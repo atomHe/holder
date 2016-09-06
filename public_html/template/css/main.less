@@ -1,0 +1,764 @@
+//******************************************//
+//
+//  Developed in Origin studio 2016
+//
+//  Developer: Artem Shirshov
+//  Designer:  Michael Ishmetov
+//  Project:   Landing page for Holdermenu.ru
+//
+//******************************************//
+
+@font-face {
+    font-family: "GothaBlack";
+    src: url("../fonts/gotham_pro/GothaProBla.otf");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "GothaBold";
+    src: url("../fonts/gotham_pro/GothaProBol.otf");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "GothaProLig";
+    src: url("../fonts/gotham_pro/GothaProLig.ttf");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "GothaProReg";
+    src: url("../fonts/gotham_pro/GothaProReg.ttf");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@widthSite: 1200px;
+@mainColor: #1e8fe6;
+@textColor: #2e383f;
+@adap: 1100px;
+@uimg:"../img";
+//[BEGIN] VAR
+.transition(@props; ...) {
+	-webkit-transition: @props;
+	-moz-transition: @props;
+	-o-transition: @props;
+	transition: @props;
+}
+.text-shadow(@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+	-webkit-text-shadow:@string;
+	-moz-text-shadow: 	@string;
+	-o-text-shadow: 	@string;
+	text-shadow: 		@string;
+}
+.translate(@x, @y:0){
+	-webkit-transform:  translate(@x, @y);
+	-moz-transform: 	translate(@x, @y);
+	-ms-transform: 		translate(@x, @y);
+	-o-transform: 		translate(@x, @y);
+}
+.border-radius (@radius) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius:    @radius;
+	border-radius:         @radius;
+}
+.vallign-wrapper{
+	display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.no_padding{
+    padding: 0;
+}
+.size(@width; @height) {
+	width: @width;
+	height: @height;
+}
+.border-box{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+body{
+	position: relative;
+	font: 16px 'GothaProReg';
+}
+.screen{
+    box-sizing: border-box;
+}
+.hidden-block{
+    opacity:0;
+}
+.visible{
+    opacity:1;
+}
+.wrapper{
+    min-width: @widthSite;
+}
+.title{
+	color: @textColor;
+	font: 35px 'GothaBold';
+	text-align: center;
+	text-transform: uppercase;
+
+	span{
+		display: block;
+		color: @mainColor;
+	}
+	small{
+		display: block;
+		margin-top: 30px;
+		padding: 0 160px;
+		font: 18px 'GothaProReg';
+		text-transform: none;
+	}
+}
+//[END] VAR
+
+//[BEGIN] Кнопка .btn
+.btn{
+	.size(242px; 60px);
+	overflow: hidden;
+	position: relative;
+    background: @mainColor;
+	border: none;
+    color: white;
+    font: 16px 'GothaProLig';
+	text-align: left;
+    .transition(all 250ms);
+
+	div{
+    	.transition(all 250ms);
+	}
+	&::before{
+		line-height: 60px;
+		padding-left: 35px;
+		content: attr(data-text);
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		-webkit-transform: translate3d(-100%, 0, 0);
+		transform: translate3d(-100%, 0, 0);
+		-webkit-transition: -webkit-transform 0.3s;
+		transition: transform 0.3s;
+		-webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+		transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+	}
+	&:hover::before{
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+	&:hover div{
+		-webkit-transform: translate3d(0, 250%, 0);
+		transform: translate3d(0, 250%, 0);
+	}
+    &.arrow{
+		padding-left: 35px;
+
+		&::before{
+			background: url(@{uimg}/1sc_arrow.png) no-repeat 200px center,  @mainColor + 12%;
+		}
+		.arrow{
+			.size(13px; 6px);
+			display: inline-block;
+			margin-left: 10px;
+			background: url(@{uimg}/1sc_arrow.png) no-repeat;
+		}
+    }
+	&.cart{
+		padding-left: 20px;
+
+		&::before{
+			background: url(@{uimg}/btn_cart.png) no-repeat 20px center,  @mainColor + 12%;
+			padding-left: 60px;
+		}
+		.cart{
+			.size(23px; 20px);
+			display: inline-block;
+			margin-right: 16px;
+			background: url(@{uimg}/btn_cart.png) no-repeat;
+		}
+		.text{
+			display: inline-block;
+			margin-top: 3px;
+			vertical-align: top;
+		}
+	}
+    &.center{
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    &.fluid{
+        width: 100%;
+    }
+}
+//[END] Кнопка .btn
+
+//[BEGIN] Модальные окна {.modal}
+.modal{
+    width: 470px;
+    padding: 35px 90px;
+    position: relative;
+    margin: 20px auto;
+    background: white;
+	border: 10px solid @mainColor;
+    box-shadow: 0 35px 60px rgba(0,0,0,.3);
+	.border-box;
+
+    .title{
+        margin-left: -40px;
+        margin-right: -40px;
+        color: @textColor;
+        font: 20px 'GothaBlack';
+        small{
+            margin-top: 20px;
+        	color: @textColor;
+            font-size: 18px;
+        }
+    }
+    form{
+        margin-top: 65px;
+
+        .input-title{
+            padding-left: 26px;
+            margin-bottom: 10px;
+            color: #484b4e;
+            font: 12px 'Open Sans', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        input{
+            width: 100%;
+            padding: 13px 43px;
+            margin-bottom: 25px;
+            background: #f1f1f1;
+            border: 1px solid #c5c5c5;
+            color: #222328;
+			.border-box;
+
+            &::-webkit-input-placeholder{
+                color: #595d66;
+                font: 16px 'Geometria';
+            }
+            &::-moz-placeholder{
+                color: #595d66;
+                font: 16px 'Geometria';
+            }
+			&.name{
+				background: url(../img/wardrobe/3sc_formico_name.png) no-repeat 15px center, white;
+			}
+			&.num{
+				background: url(../img/wardrobe/3sc_formico_num.png) no-repeat 15px center, white;
+			}
+        }
+
+        .btn{
+            margin-top: 45px;
+			padding: 23px 0;
+			font-size: 16px;
+        }
+    }
+}
+.mfp-close-btn-in .mfp-close{
+	color: @mainColor !important;
+}
+.my-mfp-zoom-in .zoom-anim-dialog {
+	opacity: 0;
+
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	-webkit-transform: scale(0.8);
+	-moz-transform: scale(0.8);
+	-ms-transform: scale(0.8);
+	-o-transform: scale(0.8);
+	transform: scale(0.8);
+}
+.my-mfp-zoom-in.mfp-ready .zoom-anim-dialog {
+	opacity: 1;
+
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+}
+.my-mfp-zoom-in.mfp-removing .zoom-anim-dialog {
+	-webkit-transform: scale(0.8);
+	-moz-transform: scale(0.8);
+	-ms-transform: scale(0.8);
+	-o-transform: scale(0.8);
+	transform: scale(0.8);
+
+	opacity: 0;
+}
+.my-mfp-zoom-in.mfp-bg {
+	opacity: 0;
+	-webkit-transition: opacity 0.3s ease-out;
+	-moz-transition: opacity 0.3s ease-out;
+	-o-transition: opacity 0.3s ease-out;
+	transition: opacity 0.3s ease-out;
+}
+.my-mfp-zoom-in.mfp-ready.mfp-bg {
+	opacity: 0.8;
+}
+.my-mfp-zoom-in.mfp-removing.mfp-bg {
+	opacity: 0;
+}
+//[END] Модальные окна {.modal}
+
+//[BEGIN] Слайдер
+.bx-wrapper {
+	position: relative;
+	margin: 0 auto 60px;
+	padding: 0;
+	*zoom: 1;
+}
+.bx-wrapper img {
+	max-width: 100%;
+	display: block;
+	float: left;
+}
+.bx-wrapper .bx-viewport {
+	left: -5px;
+	-webkit-transform: translatez(0);
+	-moz-transform: translatez(0);
+    	-ms-transform: translatez(0);
+    	-o-transform: translatez(0);
+    	transform: translatez(0);
+}
+.bx-wrapper .bx-pager,
+.bx-wrapper .bx-controls-auto {
+	position: absolute;
+	bottom: -30px;
+	width: 100%;
+}
+.bx-wrapper .bx-pager {
+	text-align: center;
+	font-size: .85em;
+	font-family: Arial;
+	font-weight: bold;
+	color: #666;
+	padding-top: 20px;
+}
+.bx-wrapper .bx-pager .bx-pager-item,
+.bx-wrapper .bx-controls-auto .bx-controls-auto-item {
+	display: inline-block;
+	*zoom: 1;
+	*display: inline;
+}
+.bx-wrapper .bx-pager.bx-default-pager a {
+	background: rgba(206, 206, 206, 0.77);
+	text-indent: -9999px;
+	display: block;
+	width: 13px;
+	height: 13px;
+	margin: 0 5px;
+	outline: 0;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	transition: background 250ms;
+}
+.bx-wrapper .bx-pager.bx-default-pager a:hover,
+.bx-wrapper .bx-pager.bx-default-pager a.active {
+	background: #fec359;
+}
+.bx-wrapper .bx-prev {
+	left: 10px;
+	background: url(images/controls.png) no-repeat 0 -32px;
+}
+.bx-wrapper .bx-next {
+	right: 10px;
+	background: url(images/controls.png) no-repeat -43px -32px;
+}
+.bx-wrapper .bx-prev:hover {
+	background-position: 0 0;
+}
+.bx-wrapper .bx-next:hover {
+	background-position: -43px 0;
+}
+.bx-wrapper .bx-controls-direction a {
+	position: absolute;
+	top: 50%;
+	margin-top: -16px;
+	outline: 0;
+	width: 32px;
+	height: 32px;
+	text-indent: -9999px;
+	z-index: 9999;
+}
+.bx-wrapper .bx-controls-direction a.disabled {
+	display: none;
+}
+.bx-wrapper .bx-controls-auto {
+	text-align: center;
+}
+.bx-wrapper .bx-controls-auto .bx-start {
+	display: block;
+	text-indent: -9999px;
+	width: 10px;
+	height: 11px;
+	outline: 0;
+	background: url(images/controls.png) -86px -11px no-repeat;
+	margin: 0 3px;
+}
+.bx-wrapper .bx-controls-auto .bx-start:hover,
+.bx-wrapper .bx-controls-auto .bx-start.active {
+	background-position: -86px 0;
+}
+.bx-wrapper .bx-controls-auto .bx-stop {
+	display: block;
+	text-indent: -9999px;
+	width: 9px;
+	height: 11px;
+	outline: 0;
+	background: url(images/controls.png) -86px -44px no-repeat;
+	margin: 0 3px;
+}
+.bx-wrapper .bx-controls-auto .bx-stop:hover,
+.bx-wrapper .bx-controls-auto .bx-stop.active {
+	background-position: -86px -33px;
+}
+.bx-wrapper .bx-controls.bx-has-controls-auto.bx-has-pager .bx-pager {
+	text-align: left;
+	width: 80%;
+}
+.bx-wrapper .bx-controls.bx-has-controls-auto.bx-has-pager .bx-controls-auto {
+	right: 0;
+	width: 35px;
+}
+.bx-wrapper .bx-caption {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: #666\9;
+	background: rgba(80, 80, 80, 0.75);
+	width: 100%;
+}
+.bx-wrapper .bx-caption span {
+	color: #fff;
+	font-family: Arial;
+	display: block;
+	font-size: .85em;
+	padding: 10px;
+}
+//[END] Слайдер
+
+//[BEGIN]
+header{
+}
+main{
+}
+//[BEGIN] Первый экран  {#main_screen} [1]
+#main_screen{
+	height: 680px;
+	padding-top: 200px;
+	background: url(@{uimg}/1sc_bg.jpg) no-repeat center;
+	background-size: cover;
+
+	.container{
+		position: relative;
+	}
+	.title{
+		width: 57%;
+		text-align: left;
+		text-transform: none;
+
+		&.blue{
+			margin-bottom: 24px;
+			color: @mainColor;
+			font-size: 33px;
+		}
+		&.black{
+			margin-bottom: 24px;
+			color: @textColor;
+			font-size: 55px;
+			line-height: 55px;
+		}
+		&.small{
+			color: @textColor;
+			font: 18px 'GothaProReg';
+			line-height: 26px;
+		}
+	}
+	.mockup{
+		.size(356px;597px);
+		position: absolute;
+		right: 0;
+		bottom: -125px;
+
+		background: url(@{uimg}/1sc_mockup.png) no-repeat;
+	}
+	.btn{
+		margin-top: 30px;
+	}
+}
+//[END] Первый экран  {#main_screen} [1]
+
+//[BEGIN] ДЛЯ КОГО ПОДХОДИТ НАСТОЛЬНОЕ МЕНЮ  {#client_screen} [2]
+#client_screen{
+
+	.title{
+		margin-bottom: 50px;
+	}
+	.block{
+		height: 370px;
+		padding: 13px;
+
+		&:hover{
+
+			.span{
+				opacity: 0;
+			}
+			.block-hover{
+				opacity: 1;
+			}
+		}
+		&-hover{
+			.size(100%;100%);
+			position: absolute;
+			padding: 25px;
+			top: 0;
+			left: 0;
+			background: @mainColor;
+			color: white;
+			opacity: 0;
+    		.transition(opacity 300ms);
+
+			.block-text{
+				margin-bottom: 30px;
+				font: 16px 'GothaProLig';
+			}
+			.block-title{
+				margin-bottom: 70px;
+				font-size: 18px;
+			}
+		}
+		span{
+			display: inline-block;
+			padding: 15px;
+			background: @mainColor;
+			color: white;
+			opacity: 1;
+    		.transition(opacity 300ms);
+		}
+		.img{
+			.size(100%;100%);
+			padding: 13px;
+			position: relative;
+			background-size: cover;
+		}
+		.img-1{
+			background: url(@{uimg}/2sc_img_1.jpg) no-repeat center;
+			.img;
+		}
+		.img-2{
+			background: url(@{uimg}/2sc_img_2.jpg) no-repeat center;
+			.img;
+		}
+		.img-3{
+			background: url(@{uimg}/2sc_img_3.jpg) no-repeat center;
+			.img;
+		}
+		.img-4{
+			background: url(@{uimg}/2sc_img_4.jpg) no-repeat center;
+			.img;
+		}
+		.img-5{
+			background: url(@{uimg}/2sc_img_5.jpg) no-repeat center;
+			.img;
+		}
+		.img-6{
+			background: url(@{uimg}/2sc_img_6.jpg) no-repeat center;
+			.img;
+		}
+	}
+}
+//[END] ДЛЯ КОГО ПОДХОДИТ НАСТОЛЬНОЕ МЕНЮ {#client_screen} [2]
+
+//[BEGIN] Экран с   {#} []
+#features_screen{
+	background: #ededed;
+
+	.title{
+		margin-bottom: 50px;
+	}
+	.block{
+		color: @textColor;
+
+		&-title{
+			font: 24px 'GothaBold';
+			margin-bottom: 25px;
+		}
+		&-text{
+			margin-bottom: 20px;
+		}
+	}
+	.left, .right{
+		padding-top: 50px;
+	}
+	.left{
+		.block{
+			&:first-child{
+				margin-bottom: 140px;
+			}
+			text-align: right;
+		}
+	}
+	.center{
+		height: 633px;
+		background: url(@{uimg}/3sc_bg.jpg) no-repeat center;
+	}
+	.right{
+		.block{
+			margin-bottom: 40px;
+		}
+	}
+	.offer{
+		.size(70%;84px);
+		margin: 70px auto 0 auto;
+		position: relative;
+		text-align: center;
+		border: 1px solid @mainColor;
+
+		&-text{
+			width: 80%;
+			padding: 10px;
+			position: absolute;
+			top: -34px;
+			left: 50%;
+			transform: translateX(-50%);
+			background: #ededed;
+			font-size: 20px;
+		}
+		.btn{
+			position: absolute;
+			left: 50%;
+			bottom: -30px;
+			transform: translateX(-50%);
+		}
+	}
+}
+
+//[BEGIN] Экран с  {#} []
+//[END] Экран с  {#} []
+#advantages_screen {
+	background: url(@{uimg}/5sc_bg.jpg) no-repeat center;
+	background-size: cover;
+	height: 811px;
+	.title {
+		color: white;
+		margin-bottom: 50px;
+		span {
+			color: white;
+			font-size: 16px;
+			font-family: "GothaProReg";
+			margin-top: 20px;
+		}
+	}
+	.block {
+		padding-bottom: 60px;
+
+		&:nth-child(2){
+			&-text{
+
+			}
+			background: red;
+		}
+		.ico_wrapper {
+			width: 50px;
+			height: 50px;
+			background: white;
+			display: inline-block;
+		}
+		.ico{
+			width: 100%;
+			height: 100%;
+			transition: .4s;
+		}
+		.ico-1 {
+			background: url(@{uimg}/5sc_ico_1.png) no-repeat center;
+			.ico;
+		}
+		.ico-2 {
+			background: url(@{uimg}/5sc_ico_2.png) no-repeat center;
+			width: 100%;
+			height: 100%;
+		}
+		.ico-3 {
+			background: url(@{uimg}/5sc_ico_3.png) no-repeat center;
+			width: 100%;
+			height: 100%;
+		}
+		.ico-4 {
+			background: url(@{uimg}/5sc_ico_4.png) no-repeat center;
+			width: 100%;
+			height: 100%;
+		}
+		.ico-5 {
+			background: url(@{uimg}/5sc_ico_5.png) no-repeat center;
+			width: 100%;
+			height: 100%;
+		}
+		.ico-6 {
+			background: url(@{uimg}/5sc_ico_6.png) no-repeat center;
+			width: 100%;
+			height: 100%;
+		}
+		.block-title {
+			width: 100px;
+			display: inline-block;
+			vertical-align: top;
+			margin-top: 5px;
+			font-family: "GothaBold";
+			color: white;
+			font-size: 16px;
+			margin-left: 10px;
+			letter-spacing: .1em;
+		}
+		.block-text {
+			font-size: 15px;
+			color: #999;
+			width: 245px;
+			margin-top: 20px;
+		}
+		&:hover {
+			.ico_wrapper {
+				background: @mainColor;
+				transition: 400ms;
+			}
+			.ico-1 {
+				background: url(@{uimg}/5sc_ico_1a.png) no-repeat center;
+				transition: .4s;
+			}
+			.ico-2 {
+				background: url(@{uimg}/5sc_ico_2a.png) no-repeat center;
+				transition: 0.4s;
+			}
+			.ico-3 {
+				background: url(@{uimg}/5sc_ico_3a.png) no-repeat center;
+				transition: 0.4s;
+			}
+			.ico-4 {
+				background: url(@{uimg}/5sc_ico_4a.png) no-repeat center;
+				transition: 0.4s;
+			}
+			.ico-5 {
+				background: url(@{uimg}/5sc_ico_5a.png) no-repeat center;
+				transition: 0.4s;
+			}
+			.ico-6 {
+				background: url(@{uimg}/5sc_ico_6a.png) no-repeat center;
+				transition: 0.4s;
+			}
+		}
+	}
+}
