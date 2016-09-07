@@ -4,7 +4,7 @@
 //
 //  Developer: Artem Shirshov
 //  Designer:  Michael Ishmetov
-//  Project:   Landing page for Holdermenu.ru
+//  Project:   Landing page for Holdermenu.ruее
 //
 //******************************************//
 
@@ -126,7 +126,7 @@ body{
     background: @mainColor;
 	border: none;
     color: white;
-    font: 16px 'GothaProLig';
+    font: 18px 'GothaProLig';
 	text-align: left;
     .transition(all 250ms);
 
@@ -173,19 +173,27 @@ body{
 	&.cart{
 		padding-left: 20px;
 
+		&.white{
+			background: white + 12%;
+			color: @textColor;
+			.cart{
+				background: url(@{uimg}/btn_cart_black.png) no-repeat;
+			}
+		}
 		&::before{
 			background: url(@{uimg}/btn_cart.png) no-repeat 20px center,  @mainColor + 12%;
 			padding-left: 60px;
+			color: white;
 		}
 		.cart{
 			.size(23px; 20px);
 			display: inline-block;
-			margin-right: 16px;
+			margin-right: 9px;
 			background: url(@{uimg}/btn_cart.png) no-repeat;
 		}
 		.text{
 			display: inline-block;
-			margin-top: 3px;
+			margin-top: 1px;
 			vertical-align: top;
 		}
 	}
@@ -439,7 +447,7 @@ body{
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	background: #666\9;
+	background: #666;
 	background: rgba(80, 80, 80, 0.75);
 	width: 100%;
 }
@@ -649,12 +657,138 @@ main{
 }
 
 //[BEGIN] Экран с  {#} []
+#specifications_screen{
+	.title{
+
+		span{
+			display: inline-block;
+		}
+	}
+
+	.switcher_block{
+		width: 400px;
+		margin: 50px auto 0 auto;
+	}
+	.switcher_wrapper, .left_text, .right_text{
+		display: inline-block;
+	}
+	.left_text, .right_text{
+		color: #7f7f7f;
+		.transition(color 250ms);
+
+		&:hover{
+			cursor: pointer;
+		}
+		&.active{
+			color: @mainColor;
+
+			&:hover{
+				cursor: default;
+			}
+			span{
+				border-color: @mainColor;
+			}
+		}
+		span{
+			padding-bottom: 1px;
+			border-bottom: 1px solid #bfbfbf;
+			.transition(border-color 250ms);
+		}
+	}
+	.left_text{
+		width: 140px;
+		margin-top: 1px;
+		margin-right: 20px;
+		text-align: right;
+		vertical-align: top;
+	}
+	.right_text{
+		margin-top: 12px;
+		margin-left: 20px;
+		vertical-align: top;
+	}
+	.switcher_wrapper{
+		.size(85px;42px);
+		position: relative;
+		background: #ededed;
+		border: 1px solid #c2c2c2;
+		border-radius: 20px;
+
+		&:hover{
+			cursor: pointer;
+		}
+		&.active{
+			.switcher{
+				left: 44px;
+
+				.ico{
+					transform: rotate(180deg);
+				}
+			}
+		}
+		.switcher{
+			.size(36px;36px);
+			position: absolute;
+			left: 0;
+			margin-top: 2px;
+			margin-left: 2px;
+			background: white;
+			border: 1px solid #c2c2c2;
+			border-radius: 50%;
+			.transition(left 250ms);
+
+			.ico{
+				.size(100%;100%);
+				transform: rotate(0deg);
+				background: url(@{uimg}/4sc_sw.png) no-repeat center;
+				.transition(transform 250ms);
+			}
+		}
+	}
+
+	.content_wrapper{
+		display: none;
+		margin-top: 60px;
+
+		&.active{
+			display: block;
+		}
+		.block{
+			&.left{
+				min-height: 480px;
+
+				&.img-1{
+					background: url(@{uimg}/4sc_img_1.jpg) no-repeat center;
+				}
+
+				&.img-2{
+					background: url(@{uimg}/4sc_img_2.jpg) no-repeat center;
+				}
+			}
+			&-text{
+				margin-bottom: 15px;
+			}
+		}
+		.btn{
+			margin-top: 40px;
+			padding-left: 35px;
+		}
+	}
+
+}
+//[END] Экран с  {#} []
+
+//[BEGIN] Экран с  {#} []
 //[END] Экран с  {#} []
 #advantages_screen {
 	background: url(@{uimg}/5sc_bg.jpg) no-repeat center;
 	background-size: cover;
 	height: 811px;
-	.title {
+	   .row {
+            padding-left: 110px;
+
+        }
+    .title {
 		color: white;
 		margin-bottom: 50px;
 		span {
@@ -665,55 +799,42 @@ main{
 		}
 	}
 	.block {
-		padding-bottom: 60px;
+		margin-bottom: 60px;
 
-		&:nth-child(2){
-			&-text{
+		&:hover {
+			cursor: default;
 
+			.block-text{
+				color: white;
 			}
-			background: red;
+			.ico_wrapper {
+				background: @mainColor;
+			}
+			.ico-1 {
+				background: url(@{uimg}/5sc_ico_1a.png) no-repeat center;
+			}
+			.ico-2 {
+				background: url(@{uimg}/5sc_ico_2a.png) no-repeat center;
+			}
+			.ico-3 {
+				background: url(@{uimg}/5sc_ico_3a.png) no-repeat center;
+			}
+			.ico-4 {
+				background: url(@{uimg}/5sc_ico_4a.png) no-repeat center;
+			}
+			.ico-5 {
+				background: url(@{uimg}/5sc_ico_5a.png) no-repeat center;
+			}
+			.ico-6 {
+				background: url(@{uimg}/5sc_ico_6a.png) no-repeat center;
+			}
 		}
-		.ico_wrapper{
-			width: 50px;
-			height: 50px;
-			background: white;
-			display: inline-block;
+		&:nth-child(2) {
+			&-text {
+				margin-top: 20px;
+			}
 		}
-		.ico{
-			width: 100%;
-			height: 100%;
-			transition: .4s;
-		}
-		.ico-1 {
-			background: url(@{uimg}/5sc_ico_1.png) no-repeat center;
-			.ico;
-		}
-		.ico-2 {
-			background: url(@{uimg}/5sc_ico_2.png) no-repeat center;
-			width: 100%;
-			height: 100%;
-		}
-		.ico-3 {
-			background: url(@{uimg}/5sc_ico_3.png) no-repeat center;
-			width: 100%;
-			height: 100%;
-		}
-		.ico-4 {
-			background: url(@{uimg}/5sc_ico_4.png) no-repeat center;
-			width: 100%;
-			height: 100%;
-		}
-		.ico-5 {
-			background: url(@{uimg}/5sc_ico_5.png) no-repeat center;
-			width: 100%;
-			height: 100%;
-		}
-		.ico-6 {
-			background: url(@{uimg}/5sc_ico_6.png) no-repeat center;
-			width: 100%;
-			height: 100%;
-		}
-		.block-title {
+		&-title {
 			width: 100px;
 			display: inline-block;
 			vertical-align: top;
@@ -723,42 +844,55 @@ main{
 			font-size: 16px;
 			margin-left: 10px;
 			letter-spacing: .1em;
+
 		}
-		.block-text {
+		&-text {
 			font-size: 15px;
-			color: #999;
+			color: #bfbfbf;
 			width: 245px;
 			margin-top: 20px;
+			.transition(color 250ms);
 		}
-		&:hover {
-			.ico_wrapper {
-				background: @mainColor;
-				transition: 400ms;
-			}
-			.ico-1 {
-				background: url(@{uimg}/5sc_ico_1a.png) no-repeat center;
-				transition: .4s;
-			}
-			.ico-2 {
-				background: url(@{uimg}/5sc_ico_2a.png) no-repeat center;
-				transition: 0.4s;
-			}
-			.ico-3 {
-				background: url(@{uimg}/5sc_ico_3a.png) no-repeat center;
-				transition: 0.4s;
-			}
-			.ico-4 {
-				background: url(@{uimg}/5sc_ico_4a.png) no-repeat center;
-				transition: 0.4s;
-			}
-			.ico-5 {
-				background: url(@{uimg}/5sc_ico_5a.png) no-repeat center;
-				transition: 0.4s;
-			}
-			.ico-6 {
-				background: url(@{uimg}/5sc_ico_6a.png) no-repeat center;
-				transition: 0.4s;
-			}
+		.ico_wrapper{
+			.size(58px;58px);
+			display: inline-block;
+			background: white;
+			.transition(background 250ms);
+		}
+		.ico{
+			.size(100%;100%);
+			.transition(background 250ms);
+		}
+		.ico-1 {
+			background: url(@{uimg}/5sc_ico_1.png) no-repeat center;
+			.ico;
+		}
+		.ico-2 {
+			background: url(@{uimg}/5sc_ico_2.png) no-repeat center;
+			.ico;
+		}
+		.ico-3 {
+			background: url(@{uimg}/5sc_ico_3.png) no-repeat center;
+			.ico;
+		}
+		.ico-4 {
+			background: url(@{uimg}/5sc_ico_4.png) no-repeat center;
+			.ico;
+		}
+		.ico-5 {
+			background: url(@{uimg}/5sc_ico_5.png) no-repeat center;
+			.ico;
+		}
+		.ico-6 {
+			background: url(@{uimg}/5sc_ico_6.png) no-repeat center;
+			.ico;
+		}
+	}
+	.btn{
+		&-subtext{
+			margin-top: 17px;
+			color: white;
+			text-align: center;
 		}
 	}
 }
